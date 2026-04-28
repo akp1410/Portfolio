@@ -50,3 +50,29 @@ jobs:
           image-ref: akd2025/portfolio:${{ github.sha }}
           severity: CRITICAL,HIGH
           exit-code: 0
+
+  notify:
+    name: Slack Notification
+    needs: [build, scan]
+    runs-on: ubuntu-latest
+    if: always()
+
+    steps:
+      - name: Send Slack Notification
+        run: |
+          if [[ "${{ needs.build.result }}" == "success" && "${{ needs.scan.result }}" == "success" ]]; then
+            STATUS="SUCCESS"
+            ICON="✅"
+          else
+            STATUS="FAILED"
+            ICON="❌"
+          fi
+
+          MESSAGE="$ICON *CI Pipeline $STATUS*
+          Repository: ${{ github.repository }}
+          Branch: ${{ github.ref_name }}
+          Commit: ${{ github.sha }}"
+
+          curl -X POST -H 'Content-type: application/json' \
+          --data "{\"text\":\"$MESSAGE\"}" \
+          ${{ secrets.SLACK_WEBHOOK_URL }}
