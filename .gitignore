@@ -7,33 +7,32 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
 dist
 dist-ssr
-*.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Env files
+.env
+.env.*
+
+# Editor files
+.vscode/
+.idea/
 .DS_Store
+
+# OS / misc
+*.local
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
 
-.env
-
-# vscode
-.vscode
-
-# Ignore Terraform state files
+# Terraform
+.terraform/
 *.tfstate
 *.tfstate.*
-
-# Ignore .terraform directory
-.terraform/
-
-# Ignore the terraform.lock.hcl file
 terraform.lock.hcl
