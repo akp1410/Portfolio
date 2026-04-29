@@ -36,9 +36,9 @@ jobs:
         with:
           context: .
           push: true
-          tags:
-            - akd2025/portfolio:${{ github.sha }}
-            - akd2025/portfolio:latest
+          tags: |
+            akd2025/portfolio:${{ github.sha }}
+            akd2025/portfolio:latest
 
   scan:
     name: Security Scan (Trivy)
