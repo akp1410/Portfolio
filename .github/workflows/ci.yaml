@@ -47,7 +47,7 @@ jobs:
 
     steps:
       - name: Scan Image
-        uses: aquasecurity/trivy-action@v0
+        uses: aquasecurity/trivy-action@0.20.0
         with:
           image-ref: akd2025/portfolio:${{ github.sha }}
           severity: CRITICAL,HIGH
